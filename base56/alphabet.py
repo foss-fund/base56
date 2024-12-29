@@ -55,16 +55,19 @@ class Alphabet:
     def encode(self, data: bytes) -> str:
         """Encode the data bytes into a base56 string."""
         from .encoding import b56encode
+
         return b56encode(data, self)
-    
+
     b56encode = encode
 
     def decode(self, data: str, skip=" \r\n\t") -> bytes:
         """Decode data bytes from a base56 string."""
         from .encoding import b56decode
+
         return b56decode(data, skip=skip, alphabet=self)
 
     b56decode = decode
+
 
 GO_STD = Alphabet(b"0123456789ABCEFGHJKLMNPRSTUVWXYZabcdefghjklmnpqrstuvwxyz")
 GO_ALT = Alphabet(b"23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ")

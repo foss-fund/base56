@@ -4,8 +4,10 @@ import pytest
 
 from base56.alphabet import Alphabet
 
+
 @pytest.mark.parametrize(
-    "data", [
+    "data",
+    [
         "\x80\x81\x99\x10\x54",
         "hi",
         "there",
@@ -19,8 +21,9 @@ from base56.alphabet import Alphabet
         "εγγεγραμμένος",
         "𐀆",
         "dskfjlkdsjflkjdslkjflksdjlkfjldskjffkjsdlkjflsdjlkfjlskdjflkjsdlkfjlsdkjfflksdjlkfjdslkjflksdjdlkfjldsjlkfj",
-    ])
-def test_encode_and_decode(data:str, alphabet: Alphabet):
+    ],
+)
+def test_encode_and_decode(data: str, alphabet: Alphabet):
     """Test all the alphabets."""
     d = data.encode("utf-8")
     v = alphabet.encode(d)

@@ -39,6 +39,7 @@ def test_docstring_of_python_file(module_name):
 # This collection needs to exclude .tox and other subdirectories
 DOCUMENT_PATHS = [PROJECT_PATH / ".." / "README.md"]
 
+
 def doctest_print(obj):
     """doctest print"""
     if isinstance(obj, bytes):
@@ -59,4 +60,3 @@ def test_documentation_file(document):
         raise_on_error=False,
     )
     assert test_result.failed == 0, f"{test_result.failed} errors in {document.name}"
-

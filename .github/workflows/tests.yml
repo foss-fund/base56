@@ -15,13 +15,12 @@ jobs:
       matrix:
         config:
         # [Python version, tox env, timezone]
-        - ["3.8",   "py38",  "Australia/Sydney"]
-        - ["3.9",   "py39",  "UTC"]
-        - ["3.10",  "py310", "Asia/Singapore"]
-        - ["3.11",  "py311", "Pacific/Bougainville"]
-        - ["3.12",  "py312", "Europe/London"]
-        - ["3.13",  "py313", "America/Dawson"]
-
+        - ["3.9",   "py39"]
+        - ["3.10",  "py310"]
+        - ["3.11",  "py311"]
+        - ["3.12",  "py312"]
+        - ["3.13",  "py313"]
+        - ["3.12",   "black"]
     runs-on: ubuntu-latest
     name: ${{ matrix.config[1] }}
     steps:
@@ -30,24 +29,13 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.config[0] }}
-    - name: Pip cache
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ matrix.config[0] }}-${{ hashFiles('setup.*', 'tox.ini') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-${{ matrix.config[0] }}-
-          ${{ runner.os }}-pip-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install tox
     - name: Test
       run: |
-        export TZ="{{ matrix.config[2] }}"
         # Debug and check the default time zone
-        python3 -c 'import time; time.tzset(); print(time.strftime("%X %x %Z"))'
-        test/test_code_quality.sh
         tox -e ${{ matrix.config[1] }}
 
   deploy-tag-to-pypi:
@@ -60,7 +48,7 @@ jobs:
     # see https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment
     environment:
       name: PyPI
-      url: https://pypi.org/project/recurring-ical-events/
+      url: https://pypi.org/project/base56/
     # after using the environment, we need to make the secrets available
     # see https://docs.github.com/en/actions/security-guides/encrypted-secrets#example-using-bash
     env:
@@ -71,7 +59,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: "3.9"
+        python-version: "3.12"
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip

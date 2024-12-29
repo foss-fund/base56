@@ -28,7 +28,7 @@ def b56encode(data: bytes, alphabet: Alphabet = DEFAULT) -> str:
     for c in data:
         value += max_value * c
         max_value <<= 8
-    
+
     while max_value:
         result.append(characters[value % 56])
         value //= 56
@@ -68,7 +68,7 @@ def b56decode(data: str, skip: str = " \r\n\t", alphabet: Alphabet = DEFAULT) ->
         raise TypeError("Data should be a string.")
     if any(ord(c) in alphabet.characters for c in skip):
         raise ValueError("Skip values must not be in the alphabet.")
-    
+
     reversed_alphabet = alphabet.reversed
     result = []
     value = 0
@@ -84,7 +84,7 @@ def b56decode(data: str, skip: str = " \r\n\t", alphabet: Alphabet = DEFAULT) ->
             )
         value += c * max_value
         max_value *= 56
-    
+
     while max_value >= 256:
         result.append(value & 255)
         value >>= 8
