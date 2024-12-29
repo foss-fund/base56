@@ -2,22 +2,19 @@
 
 Human-readable binary encoding base56.
 
-> Base56 is a variant of Base58 encoding which further sheds the '1' and the lowercase 'o' characters in order to minimise the risk of fraud and human-error.
+> Base56 is a variant of [Base58] encoding which further sheds the '1' and the lowercase 'o' characters in order to minimise the risk of fraud and human-error.
 >
-> **Base58**  is similar to Base64, but modified to avoid both non-alphanumeric characters (+ and /) and
+> [Base58]  is similar to [Base64], but modified to avoid both non-alphanumeric characters (+ and /) and
 > letters that might look ambiguous when printed (0 – zero, I – capital i, O – capital o and l – lower-case L).
-> Base58 is used to represent bitcoin addresses.[citation needed] Some messaging and social media systems break lines on non-alphanumeric strings. This is avoided by not using URI reserved characters such as +. For SegWit, it was replaced by Bech32, see below.
+> Base58 is used to represent bitcoin addresses.[citation needed] Some messaging and social media systems break lines on non-alphanumeric strings. This is avoided by not using URI reserved characters such as +.
 
-See also
+See also:
 
-- [Wikipedia](https://en.wikipedia.org/wiki/Binary-to-text_encoding)
+- [Binary-to-text_encoding](https://en.wikipedia.org/wiki/Binary-to-text_encoding)
 - [jyn514/base56](https://github.com/jyn514/base56/)
 
-## Base56
-
-`base56` is a variant of [base58](https://en.wikipedia.org/wiki/Base58)
-omitting the characters '1' and 'o' to avoid confusion.
-Its purpose is to make it easy to both type and copy/paste encoded data.
+[Base58]: https://en.wikipedia.org/wiki/Base58
+[Base64]: https://en.wikipedia.org/wiki/Base64
 
 ## Technical details
 
@@ -35,6 +32,8 @@ in the following alphabet:
 b'Hello World!'
 
 ```
+
+### Compatibility
 
 We have different alphabets defined because the Go package and other packages
 use different alphabets.
@@ -54,3 +53,18 @@ b'Hello World!'
 
 ```
 
+## Development
+
+This project is created with tests.
+To run them, install `tox`.
+
+```sh
+tox
+```
+
+To create a new release, push a new tag.
+
+```sh
+git tag v0.1.0
+git push origin v0.1.0
+```
