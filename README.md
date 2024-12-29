@@ -68,3 +68,7 @@ To create a new release, push a new tag.
 git tag v0.1.0
 git push origin v0.1.0
 ```
+
+## Changelog
+
+- v0.1.0: Initial release: Alphabets, encode, decode
