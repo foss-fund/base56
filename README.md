@@ -53,6 +53,39 @@ b'Hello World!'
 
 ```
 
+### Skipping Characters
+
+Characters that are not in the set can be skipped.
+By default, space characters are skipped.
+
+```python
+>>> b56decode('JjTDm    GcemeMrgbs73\n')
+b'Hello World!'
+>>> b56decode('JjTDm    GcemeMrgbs73\n', skip=" \n")
+b'Hello World!'
+
+```
+
+### Ambiguity
+
+If characters are ambiguous, they will be treated as the same characters.
+
+```python
+>>> GO_STD.decode("o2")  # lowercase letter o
+b'p'
+>>> GO_STD.decode("02")  # zero
+b'p'
+>>> GO_STD.decode("O2")  # capital letter o
+b'p'
+>>> GO_STD.decode("l2")  # lowercase letter L
+b'q'
+>>> GO_STD.decode("12")  # one
+b'q'
+>>> GO_STD.decode("I2")  # capital letter i
+b'q'
+
+```
+
 ## Development
 
 This project is created with tests.
@@ -71,4 +104,5 @@ git push origin v0.1.0
 
 ## Changelog
 
+- v0.1.1: Add ambiguity
 - v0.1.0: Initial release: Alphabets, encode, decode

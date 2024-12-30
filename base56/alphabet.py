@@ -19,6 +19,12 @@ See also:
 
 
 class Alphabet:
+    """Create a new alphabet for base56 encoding.
+
+    This also takes care of ambiguous characters.
+    """
+
+    ambiguous_characters = [b"1lI", b"0oO"]
 
     def __init__(self, alphabet: bytes):
         """Create a new alphabet.
@@ -33,13 +39,21 @@ class Alphabet:
         self._characters = alphabet
         self._reversed: list[int] = [-1] * 256
 
-        for i, c in enumerate(alphabet):
-            self.reversed[c] = i
+        for i, character in enumerate(alphabet):
+            self._reversed[character] = i
+
+        for ambiguous_characters in self.ambiguous_characters:
+            for character in ambiguous_characters:
+                value = self._reversed[character]
+                if value != -1:
+                    for ambiguous_character in ambiguous_characters:
+                        self._reversed[ambiguous_character] = value
+                    break
 
     @property
     def characters(self) -> bytes:
         """The characters of the alphabet in correct order."""
-        return self._characters
+        return self._characters[:]
 
     @property
     def reversed(self) -> list[int]:
@@ -47,7 +61,7 @@ class Alphabet:
 
         This is 256 long and contains the characters or -1.
         """
-        return self._reversed
+        return self._reversed[:]
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.characters})"
