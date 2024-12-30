@@ -42,12 +42,14 @@ class Alphabet:
         for i, character in enumerate(alphabet):
             self._reversed[character] = i
 
+        a = self._reversed[:]
         for ambiguous_characters in self.ambiguous_characters:
             for character in ambiguous_characters:
-                value = self._reversed[character]
-                if value != -1:
+                i = self._reversed[character]
+                if i != -1:
                     for ambiguous_character in ambiguous_characters:
-                        self._reversed[ambiguous_character] = value
+                        if self._reversed[ambiguous_character] == -1:
+                            self._reversed[ambiguous_character] = i
                     break
 
     @property

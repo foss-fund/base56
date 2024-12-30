@@ -12,6 +12,7 @@ See also:
 
 - [Binary-to-text_encoding](https://en.wikipedia.org/wiki/Binary-to-text_encoding)
 - [jyn514/base56](https://github.com/jyn514/base56/)
+- [baseconv](https://pypi.org/project/python-baseconv/)
 
 [Base58]: https://en.wikipedia.org/wiki/Base58
 [Base64]: https://en.wikipedia.org/wiki/Base64
@@ -69,6 +70,7 @@ b'Hello World!'
 ### Ambiguity
 
 If characters are ambiguous, they will be treated as the same characters.
+This only happens if they are included in the alphabet.
 
 ```python
 >>> GO_STD.decode("o2")  # lowercase letter o
@@ -77,8 +79,6 @@ b'p'
 b'p'
 >>> GO_STD.decode("O2")  # capital letter o
 b'p'
->>> GO_STD.decode("l2")  # lowercase letter L
-b'q'
 >>> GO_STD.decode("12")  # one
 b'q'
 >>> GO_STD.decode("I2")  # capital letter i
