@@ -42,7 +42,6 @@ class Alphabet:
         for i, character in enumerate(alphabet):
             self._reversed[character] = i
 
-        a = self._reversed[:]
         for ambiguous_characters in self.ambiguous_characters:
             for character in ambiguous_characters:
                 i = self._reversed[character]
