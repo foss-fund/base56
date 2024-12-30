@@ -13,9 +13,12 @@ See also:
 - [Binary-to-text_encoding](https://en.wikipedia.org/wiki/Binary-to-text_encoding)
 - [jyn514/base56](https://github.com/jyn514/base56/)
 - [baseconv](https://pypi.org/project/python-baseconv/)
+- [Go package]
+- [PHP Base56 encoding](https://rossduggan.ie/blog/codetry/base-56-integer-encoding-in-php/index.html)
 
 [Base58]: https://en.wikipedia.org/wiki/Base58
 [Base64]: https://en.wikipedia.org/wiki/Base64
+[Go package]: https://pkg.go.dev/toolman.org/encoding/base56
 
 ## Technical details
 
@@ -36,7 +39,7 @@ b'Hello World!'
 
 ### Compatibility
 
-We have different alphabets defined because the Go package and other packages
+We have different alphabets defined because the [Go package] and other packages
 use different alphabets.
 
 ```python
