@@ -104,5 +104,5 @@ git push origin v0.1.0
 
 ## Changelog
 
-- v0.1.1: Add ambiguity
+- v0.1.1: Add ambiguity support for decoding
 - v0.1.0: Initial release: Alphabets, encode, decode
