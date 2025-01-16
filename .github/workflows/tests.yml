@@ -102,5 +102,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          body: "To view the changes, please see the [Changelog](https://github.com/foss-fund/base56?tab=readme-ov-file#changelog). This release can be installed from [PyPI](https://pypi.org/project/recurring-ical-events/#history)."
+          body: "To view the changes, please see the [Changelog](https://github.com/foss-fund/base56?tab=readme-ov-file#changelog). This release can be installed from [PyPI](https://pypi.org/project/base56/#history)."
           generateReleaseNotes: false
